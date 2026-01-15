@@ -2,4 +2,7 @@ pandas
 numpy
 seaborn
 polars
+sklearn
+catboost
+xgboost
 -e .
