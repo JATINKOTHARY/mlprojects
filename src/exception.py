@@ -1,6 +1,8 @@
 import sys
 import logging
 from types import ModuleType
+from src.logger import logging
+
 def error_message_details(error , error_detail:ModuleType):
     _,_,exc_tb = error_detail.exc_info()
     file_name = exc_tb.tb_frame.f_code.co_filename
