@@ -1,11 +1,16 @@
 import os 
 import sys
+import pandas as pd 
+from dataclasses import dataclass
+
 from src.exception import CustomException
 from src.logger import logging
 from src.components.data_transformation import DataTransformConfig,DataTransform
-import pandas as pd 
+from src.components.model_trainer import ModelTrainer,ModelTrainerConfig
+
+
 from sklearn.model_selection import train_test_split
-from dataclasses import dataclass
+
 
 @dataclass
 class DataIngestionConfig:
@@ -45,4 +50,7 @@ if __name__ == "__main__":
     train_data ,test_data = obj.initiate_ingestion()
 
     data_transformation = DataTransform()
-    data_transformation.initiate_data_transformation(train_data,test_data)
+    train_arr,test_arr,processed_obj_file_path = data_transformation.initiate_data_transformation(train_data,test_data)
+
+    model_trainer = ModelTrainer()
+    print(model_trainer.initiate_model_training(train_arr,test_arr))
